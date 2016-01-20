@@ -53,6 +53,11 @@
 	box-shadow: 0px 5px 1px rgba(32, 32, 32, 0.2);
 }
 
+.key:hover {
+	color: #66bb6a;
+	font-size: 16px;
+
+}
 .rows {
 	margin-top: 280px;
 	position: relative;
@@ -87,7 +92,7 @@
 	display: inline-block;
 }
 
-.exElem {
+.exElem, .exElem1, .exElem2 {
 	width: 30%;
 	font-size: 1.25rem;
 	background-color: #656565;
@@ -101,8 +106,31 @@
 	/*vertical-align: middle;*/
 }
 
-.strong {
-	/*color: #81c784; //green*/
-	font-weight: bold;
-	/*text-shadow: .5px .5px #fff;*/
+.exElem1, .exElem2 {
+	margin-bottom: 2%;
+	height: 30px;
+	line-height: 30px;
+}
+
+.exElem1 {
+	margin-right: 32.75%;
+}
+
+#ascDesSetting, #melHarSetting {
+	background: #a5d6a7;
+	color: #fff;
+}
+
+#customColor {
+	float: left;
+	margin-top: 7px;
+	margin-left: 13px;
+	margin-right: -13px;
+}
+
+.iconPos {
+	float: left;
+	margin-left: 26px;
+	margin-top: 13px;
+	margin-right: -36px;
 }

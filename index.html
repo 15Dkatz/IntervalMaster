@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 		<meta name="viewport" content="width=device-width">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<script src="index.js"></script>
 	</head>
 	<body ng-app="ScoreApp">
@@ -58,7 +59,7 @@
 		<div  ng-controller="ScoreController">
 			<div class="rows">
 				<div class="row rowtop1">
-					<div class="col s1" itv="m2" ng-click="checkAnswer()">m2</div>
+					<div class="col s1" interval="m2" ng-click="checkAnswer()">m2</div>
 					<div class="col s1" interval="m3" ng-click="checkAnswer()">m3</div>
 					<div class="col s1" interval="m6" ng-click="checkAnswer()">m6</div>
 					<div class="col s1" interval="m7" ng-click="checkAnswer()">m7</div>
@@ -80,9 +81,13 @@
 			</div>
 
 			<div class="card-panel exercises">
-				<div class="exElem" ng-click="playInterval()">play</div>	
-				<div class="exElem">expected: <span class="strong" id="customColor">{{expected}}</span></div>	
-				<div class="exElem">score: <strong>{{counter}}</strong> high: <strong>{{highscore}}</strong></div>	
+				<strong>
+				<div class="exElem1" id="ascDesSetting" ng-click="toggleAscDes()">{{ascDesSetting}}</div>
+				<div class="exElem2" id="melHarSetting" ng-click="toggleMelHar()">{{melHarSetting}}</div>
+				<div class="exElem" ng-click="playInterval()"><i class="material-icons iconPos">play_arrow</i>play</div>	
+				<div class="exElem"><span class="strong" id="customColor"><i class="material-icons">{{evaluation}}</i></span>{{bottomNote}}{{topNote}}{{expected}}</div>	
+				<div class="exElem">score: {{counter}} high: {{highscore}}</div>
+				</strong>	
 			</div>
 		</div>
 

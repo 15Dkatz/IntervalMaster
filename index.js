@@ -108,6 +108,40 @@ angular.module("ScoreApp", [])
 		randItv();
 		var intervalLen = null;
 
+		$scope.ascDesSetting = "ascending";
+		$scope.melHarSetting = "melodic";
+
+		$scope.toggleAscDes = function() {
+			if ($scope.ascDesSetting === "ascending") {
+				$scope.ascDesSetting = "descending";
+				document.getElementById("ascDesSetting").style.background = "#81c784";
+			} else if ($scope.ascDesSetting === "descending") {
+				$scope.ascDesSetting = "both";
+				document.getElementById("ascDesSetting").style.background = "#66bb6a";
+			} else {
+				$scope.ascDesSetting = "ascending";
+				document.getElementById("ascDesSetting").style.background = "#a5d6a7";
+			}	
+		}
+
+		$scope.toggleMelHar = function() {
+			if ($scope.melHarSetting === "melodic") {
+				$scope.melHarSetting = "harmonic";
+				document.getElementById("melHarSetting").style.background = "#81c784";
+			} else if ($scope.melHarSetting === "harmonic") {
+				$scope.melHarSetting = "both";
+				document.getElementById("melHarSetting").style.background = "#66bb6a";
+			} else {
+				$scope.melHarSetting = "melodic";
+				document.getElementById("melHarSetting").style.background = "#a5d6a7";
+			}	
+		}
+
+
+		var bottomNote = null;
+		var topNote = null;
+
+
 		$scope.playInterval = function() {
 			repeat=true;
 			function notePlay(note) {
@@ -120,13 +154,53 @@ angular.module("ScoreApp", [])
 			}
 			var interval = new Array(notesArray[intervalBottom], notesArray[intervalTop]);
 
+
+
 			console.log(intervalTop + " top     bottom " + intervalBottom);
 			intervalLen = intervalTop-intervalBottom-1;
 			console.log(intervalLen + " itvLen");
 
 
-			setTimeout(function(){notePlay(interval[0])}, 0);
-			setTimeout(function(){notePlay(interval[1])}, 900);
+
+			//harmonic and melodic setting
+			var melHarTime = 900;
+
+			if ($scope.melHarSetting === "harmonic") {
+				melHarTime = 0;
+			} else if ($scope.melHarTime === "both") {
+				var randTime = Math.random()*10;
+				if (randTime < 5) {
+					melHarTime = 900;
+				} else {
+					melHarTime = 0;
+				}
+			}
+
+			if ($scope.ascDesSetting === "ascending") {
+				setTimeout(function(){notePlay(interval[0])}, 0);
+				setTimeout(function(){notePlay(interval[1])}, melHarTime);
+				bottomNote = interval[0];
+				topNote = interval[1];
+			} else if ($scope.ascDesSetting === "descending") {
+				setTimeout(function(){notePlay(interval[1])}, 0);
+				setTimeout(function(){notePlay(interval[0])}, melHarTime);
+				bottomNote = interval[1];
+				topNote = interval[0];
+			} else {
+				var randOrd = Math.random()*10;
+				if (randOrd<5) {
+					setTimeout(function(){notePlay(interval[0])}, 0);
+					setTimeout(function(){notePlay(interval[1])}, melHarTime);					
+					bottomNote = interval[0];
+					topNote = interval[1];				
+				} else {
+					setTimeout(function(){notePlay(interval[1])}, 0);
+					setTimeout(function(){notePlay(interval[0])}, melHarTime);				
+					bottomNote = interval[1];
+					topNote = interval[0];
+
+				}
+			}
 		}
 
 		$scope.customStyle = {};
@@ -150,12 +224,17 @@ angular.module("ScoreApp", [])
 					$scope.highscore=$scope.counter;
 				}
 				document.getElementById("customColor").style.color = "#a5d6a7";
+				$scope.evaluation = "done";
 			} else {
 				$scope.counter = 0;
 				document.getElementById("customColor").style.color = "#e77777";
+				$scope.evaluation = "warning";
 			}
 			randItv();
 			$scope.expected = checkItv;
+			$scope.bottomNote = bottomNote + " -> ";
+			$scope.topNote = topNote + " = ";
 		}
+
 
 })
