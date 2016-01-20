@@ -1,0 +1,108 @@
+/*CSS keyboard inspired by Keith William Horwood*/
+.title {
+	font-family: Helvetica;
+	text-align: center;
+}
+
+.keyboard-container {
+	float: left;
+	left: 48.8%;
+	position: relative;
+}
+
+.keyboard-holder {
+	height: 200px;
+	width: 280px;
+	margin-top: 4%;
+
+	float: left;
+	left: -51.2%;
+	position: relative;
+}
+
+.white {
+	background-color: #ffffff;
+	color: #000000;
+	z-index: 0;
+	text-shadow: 0px 1px 1px rgba(32, 32, 32, 0.5);
+	line-height: 380px;
+	/*text-shadow?*/
+}
+
+.black {
+	background-color: #000000;
+	color: #ffffff;
+	z-index: 1;
+	text-shadow: 0px -1px 1px rgba(255, 255, 255, 255, 0.5);
+	line-height: 215px;
+}
+
+.key {
+	position: absolute;
+	font-family: Helvetica;
+	font-weight: 100;
+	font-size: 14px;
+	vertical-align: bottom;
+	text-align: center;
+
+	border: 1px solid rgba(32, 32, 32, 32, 0.2);
+	border-top-color: rgba(32, 32, 32, 32, 0.2);
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-radius: 0px 0px 5px 5px;
+	box-shadow: 0px 5px 1px rgba(32, 32, 32, 0.2);
+}
+
+.rows {
+	margin-top: 280px;
+	position: relative;
+}
+
+.row {
+	position: relative;
+	text-align: center;
+	left: 32%;
+	margin-top: -20px;
+}
+
+.row .col.s1 {
+	border: 1px solid white;
+	margin: 7px;
+	background-color: #66bb6a;
+	color: white;
+	border-radius: 4px;
+	line-height: 40px;
+	font-size: 1.15rem;
+	font-weight: bold;
+}
+
+.rowmid .col.s1 {
+	background-color: #afdf81;
+}
+
+.exercises {
+	width: 80%;
+	position: relative;
+	left: 10%;
+	display: inline-block;
+}
+
+.exElem {
+	width: 30%;
+	font-size: 1.25rem;
+	background-color: #656565;
+	text-align: center;
+	color: #ffffff;
+	border-radius: 4px;
+	float: left;
+	margin-left: 2.75%;
+	height: 50px;
+	line-height: 50px;
+	/*vertical-align: middle;*/
+}
+
+.strong {
+	/*color: #81c784; //green*/
+	font-weight: bold;
+	/*text-shadow: .5px .5px #fff;*/
+}

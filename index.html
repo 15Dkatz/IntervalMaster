@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Interval Master</title>
+		<link rel="stylesheet" href="main.css">
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+		<meta name="viewport" content="width=device-width">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script src="index.js"></script>
+	</head>
+	<body ng-app="ScoreApp">
+		<div class="title"><h1>Mastering Intervals</h1></div>
+
+		<div class="keyboard-container">
+			<div class="keyboard-holder">
+				<div class="white key start" note="C3" style="width: 40px; height: 200px; left: -280px;">C3</div>
+				<div class="black key start" note="C#3" style="width: 30px; height: 120px; left: -260px;">C#3</div>
+				<div class="white key start" note="D3" style="width: 40px; height: 200px; left: -240px;">D3</div>
+				<div class="black key start" note="D#3" style="width: 30px; height: 120px; left: -215px;">D#3</div>
+				<div class="white key start" note="E3" style="width: 40px; height: 200px; left: -200px;">E3</div>
+				<div class="white key start" note="F3" style="width: 40px; height: 200px; left: -160px;">F3</div>
+				<div class="black key start" note="F#3" style="width: 30px; height: 120px; left: -140px;">F#3</div>
+				<div class="white key start" note="G3" style="width: 40px; height: 200px; left: -120px;">G3</div>
+				<div class="black key start" note="G#3" style="width: 30px; height: 120px; left: -100px;">G#3</div>
+				<div class="white key start" note="A3" style="width: 40px; height: 200px; left: -80px;">A3</div>
+				<div class="black key start" note="A#3" style="width: 30px; height: 120px; left: -60px;">A#3</div>
+				<div class="white key start" note="B3" style="width: 40px; height: 200px; left: -40px;">B3</div>
+				<div class="white key start" note="C4" style="width: 40px; height: 200px; left:0px;">C4</div>
+				<div class="black key start" note="C#4" style="width: 30px; height: 120px; left: 25px;">C#4</div>
+				<div class="white key start" note="D4" style="width: 40px; height: 200px; left: 40px;">D4</div>
+				<div class="black key start" note="D#4" style="width: 30px; height: 120px; left: 65px;">D#4</div>
+				<div class="white key start" note="E4" style="width: 40px; height: 200px; left: 80px;">E4</div>
+				<div class="white key start" note="F4" style="width: 40px; height: 200px; left: 120px;">F4</div>
+				<div class="black key start" note="F#4" style="width: 30px; height: 120px; left: 145px;">F#4</div>
+				<div class="white key start" note="G4" style="width: 40px; height: 200px; left: 160px;">G4</div>
+				<div class="black key start" note="G#4" style="width: 30px; height: 120px; left: 185px;">G#4</div>
+				<div class="white key start" note="A4" style="width: 40px; height: 200px; left: 200px;">A4</div>
+				<div class="black key start" note="A#4" style="width: 30px; height: 120px; left: 225px;">A#4</div>
+				<div class="white key start" note="B4" style="width: 40px; height: 200px; left: 240px;">B4</div>
+				<div class="white key start" note="C5" style="width: 40px; height: 200px; left: 280px;">C5</div>
+				<div class="black key start" note="C#5" style="width: 30px; height: 120px; left: 300px;">C#5</div>
+				<div class="white key start" note="D5" style="width: 40px; height: 200px; left: 320px;">D5</div>
+				<div class="black key start" note="D#5" style="width: 30px; height: 120px; left: 345px;">D#5</div>
+				<div class="white key start" note="E5" style="width: 40px; height: 200px; left: 360px;">E5</div>
+				<div class="white key start" note="F5" style="width: 40px; height: 200px; left: 400px;">F5</div>
+				<div class="black key start" note="F#5" style="width: 30px; height: 120px; left: 425px;">F#5</div>
+				<div class="white key start" note="G5" style="width: 40px; height: 200px; left: 440px;">G5</div>
+				<div class="black key start" note="G#5" style="width: 30px; height: 120px; left: 465px;">G#5</div>
+				<div class="white key start" note="A5" style="width: 40px; height: 200px; left: 480px;">A5</div>
+				<div class="black key start" note="A#5" style="width: 30px; height: 120px; left: 505px;">A#5</div>
+				<div class="white key start" note="B5" style="width: 40px; height: 200px; left: 520px;">B5</div>
+				<div class="white key start" note="C6" style="width: 40px; height: 200px; left: 560px;">C6</div>
+			</div>
+		</div>
+
+		<div  ng-controller="ScoreController">
+			<div class="rows">
+				<div class="row rowtop1">
+					<div class="col s1" itv="m2" ng-click="checkAnswer()">m2</div>
+					<div class="col s1" interval="m3" ng-click="checkAnswer()">m3</div>
+					<div class="col s1" interval="m6" ng-click="checkAnswer()">m6</div>
+					<div class="col s1" interval="m7" ng-click="checkAnswer()">m7</div>
+				</div>
+
+				<div class="row rowmid">
+					<div class="col s1" interval="M2" ng-click="checkAnswer()">M2</div>
+					<div class="col s1" interval="M3" ng-click="checkAnswer()">M3</div>
+					<div class="col s1" interval="M6" ng-click="checkAnswer()">M6</div>
+					<div class="col s1" interval="M7" ng-click="checkAnswer()">M7</div>
+				</div>
+
+				<div class="row">
+					<div class="col s1" interval="P4" ng-click="checkAnswer()">P4</div>
+					<div class="col s1" interval="A4" ng-click="checkAnswer()">A4</div>
+					<div class="col s1" interval="P5" ng-click="checkAnswer()">P5</div>
+					<div class="col s1" interval="P8" ng-click="checkAnswer()">P8</div>
+				</div>
+			</div>
+
+			<div class="card-panel exercises">
+				<div class="exElem" ng-click="playInterval()">play</div>	
+				<div class="exElem">expected: <span class="strong" id="customColor">{{expected}}</span></div>	
+				<div class="exElem">score: <strong>{{counter}}</strong> high: <strong>{{highscore}}</strong></div>	
+			</div>
+		</div>
+
+	</body>
+</html>
