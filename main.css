@@ -1,7 +1,50 @@
 /*CSS keyboard inspired by Keith William Horwood*/
-.title {
-	font-family: Helvetica;
+.html {
+	font-family: "Roboto", sans-serif;
+}
+
+.title, .title2 {
+	font-size: 48px;
+}
+
+
+.title, .title2 {
 	text-align: center;
+	font-weight: 400;
+}
+
+.title2 {
+	margin-top: -4.5%;
+}
+
+.page2 {
+	background-color: #c8e6c9;
+}
+
+.page3 {
+	background-color: #989898;
+}
+
+
+.cardl {
+	width: 60vw;
+	left: 20vw;
+	display: inline-block;
+	text-align: center;
+}
+
+.musictheoryP, .mpexampleP {
+	padding: 2.5%;
+}
+
+.musictheoryP {
+	text-align: center;
+	font-size: 22px;
+}
+
+.mpexampleP {
+	text-align: left;
+	font-size: 20px;
 }
 
 .keyboard-container {
@@ -95,7 +138,7 @@
 .exElem, .exElem1, .exElem2 {
 	width: 30%;
 	font-size: 1.25rem;
-	background-color: #656565;
+	background-color: #787878;
 	text-align: center;
 	color: #ffffff;
 	border-radius: 4px;

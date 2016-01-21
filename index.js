@@ -63,10 +63,9 @@ function startOsc(note) {
 	osc.frequency.value = notes[note];
 	osc.connect(context.destination);
 	
-	if (notes[note]=="C3") {
-		osc.gain.value=50;
-	}
-
+	// if (notes[note]=="C3") {
+	// 	osc.gain.value=50;
+	// }	
 	osc.start(0);
 	// osc.connect(gain);
 	//prevent from hitting twice.
@@ -94,6 +93,13 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function () {
+	$('#fullpage').fullpage({
+		controlArrows: true
+	})
+});
+
+
 angular.module("ScoreApp", [])
 	.controller("ScoreController", function($scope) {
 		$scope.counter = 0;
@@ -101,6 +107,9 @@ angular.module("ScoreApp", [])
 
 		var intervalBottom = null;
 		var intervalTop = null;
+
+		var preventAfterCheck = false;
+
 		var randItv = function () {
 			intervalBottom = Math.floor((Math.random()*24)+1);;
 			intervalTop = Math.floor(intervalBottom+(Math.random()*12)+1);
@@ -141,28 +150,27 @@ angular.module("ScoreApp", [])
 		var bottomNote = null;
 		var topNote = null;
 
+		var cont = new AudioContext();
 
 		$scope.playInterval = function() {
-			repeat=true;
+			preventAfterCheck = false;
 			function notePlay(note) {
-				startOsc(note);
+				var osci = cont.createOscillator();
+				osci.connect(cont.destination);
+				osci.frequency.value=notes[note];
+				osci.start(0);
+				// startOsc(note);
 				console.log(note);
 				setTimeout(function() {
-					osc.stop();
-					osc.disconnect(context.destination);
+					osci.stop();
+					osci.disconnect(cont.destination);
 				}, 1000/1.33);
 			}
 			var interval = new Array(notesArray[intervalBottom], notesArray[intervalTop]);
 
-
-
 			console.log(intervalTop + " top     bottom " + intervalBottom);
 			intervalLen = intervalTop-intervalBottom-1;
 			console.log(intervalLen + " itvLen");
-
-
-
-			//harmonic and melodic setting
 			var melHarTime = 900;
 
 			if ($scope.melHarSetting === "harmonic") {
@@ -213,22 +221,26 @@ angular.module("ScoreApp", [])
 		}
 
 		$scope.checkAnswer = function() {
-			// console.log(intervalsArray[intervalLen]);
+			// var preventAfterCheck = true;
 			var checkItv = intervalsArray[intervalLen];
 			console.log(checkItv + "    " + playedItv);
 
-			if (checkItv === playedItv) {
-				console.log("increment()")
-				$scope.counter++;
-				if ($scope.counter>$scope.highscore) {
-					$scope.highscore=$scope.counter;
+			if (preventAfterCheck === false) {
+				if (checkItv === playedItv) {
+					preventAfterCheck = true;
+					console.log(preventAfterCheck);
+					$scope.counter++;
+					if ($scope.counter>$scope.highscore) {
+						$scope.highscore=$scope.counter;
+					}
+					document.getElementById("customColor").style.color = "#a5d6a7";
+					$scope.evaluation = "done";
+				} else {
+					$scope.counter = 0;
+					document.getElementById("customColor").style.color = "#e77777";
+					$scope.evaluation = "warning";
+					preventAfterCheck = true;
 				}
-				document.getElementById("customColor").style.color = "#a5d6a7";
-				$scope.evaluation = "done";
-			} else {
-				$scope.counter = 0;
-				document.getElementById("customColor").style.color = "#e77777";
-				$scope.evaluation = "warning";
 			}
 			randItv();
 			$scope.expected = checkItv;
